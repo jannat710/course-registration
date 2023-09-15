@@ -10,7 +10,7 @@ console.log(selectedCourse);
             <h1>Course Name ;{selectedCourse.length}</h1>
             {
                 selectedCourse.map(course =>(
-                    <li className='list-decimal list-inside'>{course.title}</li>
+                    <li key={course.id} className='list-decimal list-inside'>{course.title}</li>
                 ))
             }
         </div>

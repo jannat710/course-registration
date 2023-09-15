@@ -16,7 +16,14 @@ const Home = () => {
     }, [])
     // console.log(allCourse)
     const handleSelectCourse = (course) => {
-        setSelectedCourse([...selectedCourse,course]);
+        const isExist=selectedCourse.find(test=>test.id==course.id);
+        if(isExist){
+            alert('Already booked')
+        }
+        else{
+            setSelectedCourse([...selectedCourse,course]);
+        }
+       
     };
     // console.log(selectedCourse);
 
