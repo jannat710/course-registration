@@ -1,17 +1,24 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
+import { BsBook } from 'react-icons/bs';
+import { FiDollarSign } from 'react-icons/fi';
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
 
 const Home = () => {
     const [allCourse, setAllCourse] = useState([]);
+    const [selectedCourse,setSelectedCourse]=useState([]);
 
     useEffect(() => {
         fetch('./course.json')
             .then((res) => res.json())
             .then((data) => setAllCourse(data))
     }, [])
-    console.log(allCourse)
+    // console.log(allCourse)
+    const handleSelectCourse = (course) => {
+        setSelectedCourse([...selectedCourse,course]);
+    };
+    // console.log(selectedCourse);
 
     return (
         <div className='bg-gray-200 container mx-auto'>
@@ -19,22 +26,24 @@ const Home = () => {
             <div className='flex justify-evenly'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
                     {
-                        allCourse.map(course => (<div key={course.id} className='bg-white w-64 h-80 p-3'>
+                        allCourse.map(course => (<div key={course.id} className='bg-white w-64  p-3'>
                             <div className=''>
-                                <img className='w-full mx-auto' src={course.image} alt="" />
+                                <img className='w-full mx-auto pb-2' src={course.image} alt="" />
                             </div>
                             <h2 className='text-base font-semibold'>{course.title}</h2>
-                            <p className='text-[#1c1b1b99] text-sm font-normal'><small>{course.details}</small></p>
-                            <div className="flex justify-evenly">
-                                <p>$ Price : {course.price}</p>
-                                <p>Credit : {course.credit}hr</p>
+                            <p className='text-[#1c1b1b99] text-sm font-normal py-3'><small>{course.details}</small></p>
+                            <div className="flex justify-between gap-2 pb-3">
+                                <button><FiDollarSign></FiDollarSign></button>
+                                <p className='text-sm font-medium text-[#1c1b1b99]'>Price : {course.price}</p>
+                                <button><BsBook></BsBook></button>
+                                <p className='text-sm font-medium text-[#1c1b1b99]'>Credit : {course.credit}hr</p>
                             </div>
-                            <button className='btn btn-primary text-white w-full'>Select</button>
+                            <button onClick={() => handleSelectCourse(course)} className='btn btn-primary text-white w-full'>Select</button>
                         </div>))
                     }
                 </div>
                 <div className="div">
-                    <h1>This is cart</h1>
+                    <Cart selectedCourse={selectedCourse}></Cart>
                 </div>
             </div>
         </div>
