@@ -4,11 +4,13 @@ import { BsBook } from 'react-icons/bs';
 import { FiDollarSign } from 'react-icons/fi';
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
     const [allCourse, setAllCourse] = useState([]);
     const [selectedCourse,setSelectedCourse]=useState([]);
-    const [remaining,setRemaining]=useState(0);
+    const [remaining,setRemaining]=useState(20);
     const [totalHour,setTotalHour]=useState(0);
 
 
@@ -23,7 +25,10 @@ const Home = () => {
 
         let hour=course.credit;
         if(isExist){
-           return alert('Already booked')
+           return     toast.error("Already enrolled!", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000
+          });
         }
         else{
             selectedCourse.forEach(item => {
@@ -31,8 +36,11 @@ const Home = () => {
             });      
             const remaining=20-hour;
             
-            if(hour>20){
-                return alert('credit sesh');
+            if(hour>20 || remaining<0){
+                return     toast.error("Opss!", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000
+                  });
             }
             else{
                 setTotalHour(hour);
@@ -47,7 +55,7 @@ const Home = () => {
     return (
         <div className='bg-gray-200 container mx-auto'>
             <h1 className='font-bold text-3xl text-center py-10'>Course Registration</h1>
-            <div className='flex justify-evenly'>
+            <div className='flex flex-col lg:flex-row justify-evenly'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16'>
                     {
                         allCourse.map(course => (<div key={course.id} className='bg-white w-64  p-3'>
@@ -65,6 +73,7 @@ const Home = () => {
                             <button onClick={() => handleSelectCourse(course)} className='btn btn-primary text-white w-full'>Select</button>
                         </div>))
                     }
+                    <ToastContainer />
                 </div>
                 <div className="div">
                     <Cart selectedCourse={selectedCourse} remaining={remaining} totalHour={totalHour}></Cart>
