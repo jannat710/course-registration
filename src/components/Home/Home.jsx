@@ -7,6 +7,7 @@ import Cart from '../Cart/Cart';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Home = () => {
     const [allCourse, setAllCourse] = useState([]);
     const [selectedCourse,setSelectedCourse]=useState([]);
