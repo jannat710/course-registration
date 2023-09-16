@@ -1,8 +1,11 @@
-# React + Vite
+# Questions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Question1. Add at least 3 Project features
+Answer :
+- Course selection
+- Toast notification
+- Cart
 
-Currently, two official plugins are available:
+### Question2. Discuss how you managed the state in your assignment project.
+Answer : In my assignment project , I managed the state using the useState and useEffect hook . Here the useState hook is used to define several state variable like allCourse, selectedCourse, remaining and totalHour .The useEffect hook is used to fetch the data .
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

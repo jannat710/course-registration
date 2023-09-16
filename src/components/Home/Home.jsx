@@ -70,7 +70,7 @@ const Home = () => {
                                 <button><BsBook></BsBook></button>
                                 <p className='text-sm font-medium text-[#1c1b1b99]'>Credit : {course.credit}hr</p>
                             </div>
-                            <button onClick={() => handleSelectCourse(course)} className='btn btn-primary text-white w-full'>Select</button>
+                            <button onClick={() => handleSelectCourse(course)} className='bg-blue-600 w-full p-2 rounded-lg text-white'>Select</button>
                         </div>))
                     }
                     <ToastContainer />
