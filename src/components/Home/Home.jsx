@@ -38,7 +38,7 @@ const Home = () => {
             const remaining=20-hour;
             
             if(hour>20 || remaining<0){
-                return     toast.error("Opss!", {
+                return     toast.error("Opss! Completed credit hour .", {
                     position: toast.POSITION.TOP_CENTER,
                     autoClose: 2000
                   });
